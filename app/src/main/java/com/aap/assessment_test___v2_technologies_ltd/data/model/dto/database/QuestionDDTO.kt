@@ -29,7 +29,7 @@ data class QuestionDDTO(
     @ColumnInfo(name = "answer_from_keyboard")
     val answerFromKeyboard: String,
     @ColumnInfo(name = "survey_id")
-    val surveyId: Long
+    var surveyId: Long
 ) {
     companion object {
         const val QUESTION_TABLE = "question"
