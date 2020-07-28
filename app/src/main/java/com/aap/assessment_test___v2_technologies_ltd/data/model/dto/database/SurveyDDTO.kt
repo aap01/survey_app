@@ -9,7 +9,9 @@ import com.aap.assessment_test___v2_technologies_ltd.data.model.dto.database.Sur
 data class SurveyDDTO (
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = SURVEY_ID_COL)
-    val id: Long
+    val id: Long = 0,
+    @ColumnInfo(name= "date_long")
+    val dateLong: Long
 ) {
     companion object {
         const val SURVEY_TABLE = "survey"
