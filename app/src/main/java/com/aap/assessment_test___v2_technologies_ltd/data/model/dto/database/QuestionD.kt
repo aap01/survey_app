@@ -24,7 +24,7 @@ data class QuestionD(
     val required: Boolean,
     @ColumnInfo( name = "type")
     val type: String,
-    @ColumnInfo(name = "selected_options_indexes")
+    @ColumnInfo(name = "selected_options_indexes") //Comma separated ints in a string : "2, 4"
     val selectedOptions: String,
     @ColumnInfo(name = "answer_from_keyboard")
     val answerFromKeyboard: String,
@@ -34,5 +34,11 @@ data class QuestionD(
     companion object {
         const val QUESTION_TABLE = "question"
         const val QUESTION_ID_COL = "id"
+
+        const val MULTIPLE_CHOICE = "multiple choice"
+        const val TEXT = "text"
+        const val DROPDOWN = "dropdown"
+        const val NUMBER = "number"
+        const val CHECKBOX = "Checkbox"
     }
 }

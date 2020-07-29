@@ -1,13 +1,11 @@
 package com.aap.assessment_test___v2_technologies_ltd.data.repository
 
-import com.aap.assessment_test___v2_technologies_ltd.data.model.dto.database.SurveyD
-import com.aap.assessment_test___v2_technologies_ltd.data.model.dto.database.SurveyQuestionD
-import com.aap.assessment_test___v2_technologies_ltd.data.model.dto.network.SurveyNet
+import com.aap.assessment_test___v2_technologies_ltd.data.mapper.SurveyNetToSurvey
+import com.aap.assessment_test___v2_technologies_ltd.data.mapper.SurveyQuestionDToSurvey
+import com.aap.assessment_test___v2_technologies_ltd.data.mapper.SurveyToSurveyQuestionD
 import com.aap.assessment_test___v2_technologies_ltd.data.model.entity.Survey
-import com.aap.assessment_test___v2_technologies_ltd.data.model.mapper.SurveyNetToSurvey
 import com.aap.assessment_test___v2_technologies_ltd.domain.api.SurveyApiService
 import com.aap.assessment_test___v2_technologies_ltd.domain.database.SurveyDao
-import com.aap.assessment_test___v2_technologies_ltd.domain.mapper.Mapper
 import com.aap.assessment_test___v2_technologies_ltd.domain.repository.SurveyRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -15,12 +13,13 @@ import kotlinx.coroutines.withContext
 class SurveyRepositoryImpl(
     private val surveyApiService: SurveyApiService,
     private val surveyDao: SurveyDao,
-    private val surveyNetToSurvey: Mapper<SurveyNet, Survey>,
-    private val surveyToSurveyQuestionD: Mapper<Survey, SurveyQuestionD>
+    private val surveyNetToSurvey: SurveyNetToSurvey,
+    private val surveyToSurveyQuestionD: SurveyToSurveyQuestionD,
+    private val surveyQuestionDToSurvey: SurveyQuestionDToSurvey
 ) : SurveyRepository {
     override suspend fun fetchNewSurvey(): Survey {
         return withContext(Dispatchers.IO) {
-            surveyNetToSurvey.map(surveyApiService.fetchSurvey())
+            surveyNetToSurvey.map(surveyApiService.fetchSurvey().await())
         }
     }
 
@@ -31,6 +30,8 @@ class SurveyRepositoryImpl(
     }
 
     override suspend fun getPreviousSurveys(): List<Survey> {
-        TODO("Not yet implemented")
+        return withContext(Dispatchers.IO) {
+            surveyQuestionDToSurvey.map(surveyDao.getPreviousSurveys())
+        }
     }
 }

@@ -12,4 +12,12 @@ data class QuestionNet(
     val required: Boolean,
     @SerializedName("type")
     val type: String
-)
+) {
+    companion object {
+        const val MULTIPLE_CHOICE = "multiple choice"
+        const val TEXT = "text"
+        const val DROPDOWN = "dropdown"
+        const val NUMBER = "number"
+        const val CHECKBOX = "Checkbox"
+    }
+}
