@@ -1,10 +1,11 @@
-package com.aap.assessment_test___v2_technologies_ltd.presentation.new_survey
+package com.aap.assessment_test___v2_technologies_ltd.presentation.new_survey.number
 
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextUtils
 import android.text.TextWatcher
 import com.aap.assessment_test___v2_technologies_ltd.R
+import com.aap.assessment_test___v2_technologies_ltd.presentation.new_survey.QuestionFragment
 import kotlinx.android.synthetic.main.fragment_number.*
 import kotlinx.android.synthetic.main.question.*
 

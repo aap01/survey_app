@@ -1,4 +1,4 @@
-package com.aap.assessment_test___v2_technologies_ltd.presentation.new_survey
+package com.aap.assessment_test___v2_technologies_ltd.presentation.new_survey.mcq
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -16,7 +16,9 @@ class MCQAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private lateinit var context: Context
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         context = parent.context
-        return MCQViewHolder(LayoutInflater.from(context).inflate(R.layout.item_mcq, parent, false))
+        return MCQViewHolder(
+            LayoutInflater.from(context).inflate(R.layout.item_mcq, parent, false)
+        )
     }
 
     override fun getItemCount(): Int {

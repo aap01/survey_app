@@ -1,7 +1,6 @@
 package com.aap.assessment_test___v2_technologies_ltd.data.di
 
 import DB_NAME
-import androidx.fragment.app.Fragment
 import androidx.room.Room
 import com.aap.assessment_test___v2_technologies_ltd.data.api.BASE_URL
 import com.aap.assessment_test___v2_technologies_ltd.data.mapper.SurveyNetToSurvey
@@ -17,9 +16,8 @@ import com.aap.assessment_test___v2_technologies_ltd.domain.repository.SurveyRep
 import com.aap.assessment_test___v2_technologies_ltd.domain.usecase.FetchSurveyUC
 import com.aap.assessment_test___v2_technologies_ltd.domain.usecase.GetPreviousSurveyUC
 import com.aap.assessment_test___v2_technologies_ltd.domain.usecase.StoreSurveyUC
-import com.aap.assessment_test___v2_technologies_ltd.presentation.new_survey.CheckboxAdapter
-import com.aap.assessment_test___v2_technologies_ltd.presentation.new_survey.FragmentAdapter
-import com.aap.assessment_test___v2_technologies_ltd.presentation.new_survey.MCQAdapter
+import com.aap.assessment_test___v2_technologies_ltd.presentation.new_survey.checkbox.CheckboxAdapter
+import com.aap.assessment_test___v2_technologies_ltd.presentation.new_survey.mcq.MCQAdapter
 import com.aap.assessment_test___v2_technologies_ltd.presentation.new_survey.NewSurveyVM
 import com.aap.assessment_test___v2_technologies_ltd.presentation.previous_survey.PreviousSurveyVM
 import com.google.gson.GsonBuilder
@@ -27,11 +25,9 @@ import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterF
 import kotlinx.coroutines.Job
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.viewmodel.dsl.viewModel
-import org.koin.core.module.Module
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
 
 val dbModule = module {
     single { Room.databaseBuilder(androidContext().applicationContext, AppDatabase::class.java, DB_NAME).build() }

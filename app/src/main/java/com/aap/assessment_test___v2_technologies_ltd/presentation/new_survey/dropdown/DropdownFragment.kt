@@ -1,12 +1,11 @@
-package com.aap.assessment_test___v2_technologies_ltd.presentation.new_survey
+package com.aap.assessment_test___v2_technologies_ltd.presentation.new_survey.dropdown
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Adapter
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.SpinnerAdapter
 import com.aap.assessment_test___v2_technologies_ltd.R
+import com.aap.assessment_test___v2_technologies_ltd.presentation.new_survey.QuestionFragment
 import kotlinx.android.synthetic.main.fragment_dropdown.*
 import kotlinx.android.synthetic.main.question.*
 

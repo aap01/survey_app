@@ -1,6 +1,5 @@
 package com.aap.assessment_test___v2_technologies_ltd.presentation.new_survey
 
-import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -16,14 +15,17 @@ import com.aap.assessment_test___v2_technologies_ltd.data.util.ErrorResponse
 import com.aap.assessment_test___v2_technologies_ltd.data.util.Loading
 import com.aap.assessment_test___v2_technologies_ltd.data.util.SuccessResponse
 import com.aap.assessment_test___v2_technologies_ltd.presentation.IFinishSurvey
-import com.aap.assessment_test___v2_technologies_ltd.presentation.INewSurveyClick
+import com.aap.assessment_test___v2_technologies_ltd.presentation.new_survey.checkbox.CheckboxFragment
+import com.aap.assessment_test___v2_technologies_ltd.presentation.new_survey.dropdown.DropdownFragment
 import com.aap.assessment_test___v2_technologies_ltd.presentation.extentions.gone
 import com.aap.assessment_test___v2_technologies_ltd.presentation.extentions.visible
+import com.aap.assessment_test___v2_technologies_ltd.presentation.new_survey.mcq.MCQFragment
+import com.aap.assessment_test___v2_technologies_ltd.presentation.new_survey.number.NumberFragment
+import com.aap.assessment_test___v2_technologies_ltd.presentation.new_survey.text.TextFragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.android.synthetic.main.fragment_new_survey.*
 import kotlinx.android.synthetic.main.loading.*
 import org.koin.android.ext.android.inject
-import org.koin.android.scope.currentScope
 
 class NewSurveyFragment : Fragment() {
 
@@ -92,27 +94,32 @@ class NewSurveyFragment : Fragment() {
         survey.questions.forEach {
             when (it.type) {
                 QuestionType.DROP_DOWN -> {
-                    val dropdown = DropdownFragment()
+                    val dropdown =
+                        DropdownFragment()
                     dropdown.question = it
                     tempList.add(dropdown)
                 }
                 QuestionType.MULTI_CHOICE -> {
-                    val mcq = MCQFragment()
+                    val mcq =
+                        MCQFragment()
                     mcq.question = it
                     tempList.add(mcq)
                 }
                 QuestionType.NUMBER -> {
-                    val number = NumberFragment()
+                    val number =
+                        NumberFragment()
                     number.question = it
                     tempList.add(number)
                 }
                 QuestionType.CHECKBOX -> {
-                    val checkbox = CheckboxFragment()
+                    val checkbox =
+                        CheckboxFragment()
                     checkbox.question = it
                     tempList.add(checkbox)
                 }
                 QuestionType.TEXT -> {
-                    val text = TextFragment()
+                    val text =
+                        TextFragment()
                     text.question = it
                     tempList.add(text)
                 }
