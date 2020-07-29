@@ -7,7 +7,7 @@ import com.aap.assessment_test___v2_technologies_ltd.presentation.new_survey.New
 import com.aap.assessment_test___v2_technologies_ltd.presentation.previous_survey.PreviousSurveyFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), INewSurveyClick {
+class MainActivity : AppCompatActivity(), INewSurveyClick, IFinishSurvey {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity(), INewSurveyClick {
 
     private fun launchNewSurveyFragment() {
         val newSurveyFragment = NewSurveyFragment()
+        newSurveyFragment.iFinishSurvey = this
         supportFragmentManager
             .beginTransaction()
             .replace(container.id, newSurveyFragment)
@@ -41,5 +42,9 @@ class MainActivity : AppCompatActivity(), INewSurveyClick {
 
     override fun onClick() {
         launchNewSurveyFragment()
+    }
+
+    override fun onFinished() {
+        onBackPressed()
     }
 }

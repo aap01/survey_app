@@ -1,5 +1,6 @@
 package com.aap.assessment_test___v2_technologies_ltd.presentation.new_survey
 
+import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -14,15 +15,19 @@ import com.aap.assessment_test___v2_technologies_ltd.data.model.entity.Survey
 import com.aap.assessment_test___v2_technologies_ltd.data.util.ErrorResponse
 import com.aap.assessment_test___v2_technologies_ltd.data.util.Loading
 import com.aap.assessment_test___v2_technologies_ltd.data.util.SuccessResponse
+import com.aap.assessment_test___v2_technologies_ltd.presentation.IFinishSurvey
 import com.aap.assessment_test___v2_technologies_ltd.presentation.INewSurveyClick
 import com.aap.assessment_test___v2_technologies_ltd.presentation.extentions.gone
 import com.aap.assessment_test___v2_technologies_ltd.presentation.extentions.visible
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.android.synthetic.main.fragment_new_survey.*
 import kotlinx.android.synthetic.main.loading.*
 import org.koin.android.ext.android.inject
 import org.koin.android.scope.currentScope
 
 class NewSurveyFragment : Fragment() {
+
+    var iFinishSurvey: IFinishSurvey? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,13 +40,24 @@ class NewSurveyFragment : Fragment() {
     private lateinit var questionFragmentList: List<QuestionFragment>
     private lateinit var survey: Survey
     private val newSurveyVM: NewSurveyVM by inject()
+    private lateinit var fragmentAdapter: FragmentAdapter
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         initObservers()
         setupBackPressing()
         setButtonActions()
+        initAdapters()
+        initUi()
         newSurveyVM.fetchNewSurvey()
+    }
+
+    private fun initUi() {
+        viewPager.adapter = fragmentAdapter
+    }
+
+    private fun initAdapters() {
+        fragmentAdapter = FragmentAdapter(childFragmentManager)
     }
 
     private fun setupBackPressing() {
@@ -103,6 +119,7 @@ class NewSurveyFragment : Fragment() {
             }
         }
         questionFragmentList = tempList
+        fragmentAdapter.setFragmentList(questionFragmentList)
     }
 
     private fun showErrorDialog(it: ErrorResponse<Survey>) {
@@ -130,7 +147,15 @@ class NewSurveyFragment : Fragment() {
     }
 
     private fun showThanks() {
-        TODO("Not yet implemented")
+        MaterialAlertDialogBuilder(context)
+            .setTitle("Thank You!")
+            .setMessage("Congratulations! You have taken the survey successfully. You can access this survey from dashboard.")
+            .setPositiveButton("OK") { dialog, which ->
+                iFinishSurvey?.onFinished()
+                dialog.dismiss()
+            }
+            .create()
+            .show()
     }
 
 }

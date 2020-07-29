@@ -18,7 +18,8 @@ class SurveyApp: Application() {
                 mapperModule,
                 repoModule,
                 useCaseModule,
-                viewModelModule
+                viewModelModule,
+                adapterModule
             ))
         }
     }

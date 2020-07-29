@@ -2,6 +2,7 @@ package com.aap.assessment_test___v2_technologies_ltd.data.mapper
 
 import com.aap.assessment_test___v2_technologies_ltd.data.model.dto.database.QuestionD
 import com.aap.assessment_test___v2_technologies_ltd.data.model.dto.database.SurveyQuestionD
+import com.aap.assessment_test___v2_technologies_ltd.data.model.entity.Option
 import com.aap.assessment_test___v2_technologies_ltd.data.model.entity.Question
 import com.aap.assessment_test___v2_technologies_ltd.data.model.entity.QuestionType
 import com.aap.assessment_test___v2_technologies_ltd.data.model.entity.Survey
@@ -24,12 +25,22 @@ class SurveyQuestionDToSurvey: Transformer<List<SurveyQuestionD>, List<Survey>> 
                             QuestionD.NUMBER -> QuestionType.NUMBER
                             else -> throw IllegalStateException("QuestionD.type not configured" + q.type)
                         },
-                        options = q.options.split(",").map { option -> option.trim() },
-                        answerIndexes = selectedIndexes,
+                        options = q.options
+                            .split(",")
+                            .mapIndexed { index, option ->
+                                Option(
+                                    option.trim(),
+                                    isSelected = q.selectedOptions
+                                        .split(",")
+                                        .map { it.trim().toInt() }
+                                        .contains(index)
+                                )
+                            },
                         answerFromKeyboard = q.answerFromKeyboard,
                         isRequired = q.required
                     )
                 },
+
                 dateLong = it.surveyD.dateLong
             )
         }.sortedByDescending { it.dateLong }

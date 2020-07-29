@@ -29,7 +29,7 @@ data class QuestionD(
     @ColumnInfo(name = "answer_from_keyboard")
     val answerFromKeyboard: String,
     @ColumnInfo(name = "survey_id")
-    var surveyId: Long
+    var surveyId: Long = 0
 ) {
     companion object {
         const val QUESTION_TABLE = "question"
