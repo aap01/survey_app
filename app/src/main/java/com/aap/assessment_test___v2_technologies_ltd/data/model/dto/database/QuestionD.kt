@@ -4,15 +4,15 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
-import com.aap.assessment_test___v2_technologies_ltd.data.model.dto.database.QuestionDDTO.Companion.QUESTION_TABLE
+import com.aap.assessment_test___v2_technologies_ltd.data.model.dto.database.QuestionD.Companion.QUESTION_TABLE
 
 @Entity(tableName = QUESTION_TABLE,
     foreignKeys = [ForeignKey(
-        entity = SurveyDDTO::class,
-        parentColumns = arrayOf(SurveyDDTO.SURVEY_ID_COL),
+        entity = SurveyD::class,
+        parentColumns = arrayOf(SurveyD.SURVEY_ID_COL),
         childColumns = arrayOf("survey_id"),
         onDelete = ForeignKey.CASCADE)])
-data class QuestionDDTO(
+data class QuestionD(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = QUESTION_ID_COL)
     val id: Long = 0,

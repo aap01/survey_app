@@ -3,6 +3,7 @@
     package="com.aap.assessment_test___v2_technologies_ltd">
 
     <application
+        android:name=".SurveyApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"

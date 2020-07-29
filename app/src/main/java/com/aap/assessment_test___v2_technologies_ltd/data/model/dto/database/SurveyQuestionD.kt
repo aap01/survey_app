@@ -4,11 +4,11 @@ import androidx.room.Embedded
 import androidx.room.Relation
 import com.aap.assessment_test___v2_technologies_ltd.data.model.entity.Survey
 
-data class SurveyQuestionDDTO (
+data class SurveyQuestionD (
     @Embedded
-    var survey: Survey,
+    var surveyD: SurveyD,
     @Relation(
-        parentColumn = SurveyDDTO.SURVEY_ID_COL,
-        entityColumn = QuestionDDTO.QUESTION_ID_COL
-    ) val questions: List<QuestionDDTO>
+        parentColumn = SurveyD.SURVEY_ID_COL,
+        entityColumn = QuestionD.QUESTION_ID_COL
+    ) val questionsD: List<QuestionD>
 )
