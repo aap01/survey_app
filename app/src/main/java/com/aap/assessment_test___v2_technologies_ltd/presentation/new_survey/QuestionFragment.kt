@@ -11,10 +11,6 @@ import com.google.gson.Gson
 
 abstract class QuestionFragment : Fragment(), IValidate {
 
-    companion object {
-        private const val QUESTION = "QUESTION"
-    }
-
     lateinit var question: Question
 
     abstract val layoutId: Int
@@ -28,17 +24,8 @@ abstract class QuestionFragment : Fragment(), IValidate {
 
     fun getQuestionTitleWithConstraint(): String {
         return if (question.isRequired) question.question
-        else question.question + " (optional)"
+        else question.question + " " + getString(R.string.optional)
     }
 
-//    override fun onSaveInstanceState(outState: Bundle) {
-//        super.onSaveInstanceState(outState)
-//        outState.putSerializable(QUESTION, question)
-//    }
-//
-//    override fun onViewStateRestored(savedInstanceState: Bundle?) {
-//        super.onViewStateRestored(savedInstanceState)
-//        question = savedInstanceState?.getSerializable(QUESTION) as Question
-//    }
 
 }

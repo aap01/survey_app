@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.lifecycle.Observer
+import androidx.viewpager.widget.ViewPager
 import com.aap.assessment_test___v2_technologies_ltd.R
 import com.aap.assessment_test___v2_technologies_ltd.data.model.entity.QuestionType
 import com.aap.assessment_test___v2_technologies_ltd.data.model.entity.Survey
@@ -64,6 +65,26 @@ class NewSurveyFragment : Fragment() {
             v?.performClick()
             true
         }
+        viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+            override fun onPageScrollStateChanged(state: Int) {
+
+            }
+
+            override fun onPageScrolled(
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
+            ) {
+            }
+
+            override fun onPageSelected(position: Int) {
+                if (viewPager.currentItem == questionFragmentList.size - 1) {
+                    next.text = getString(R.string.done)
+                }
+                else next.text = getString(R.string.next)
+            }
+
+        })
     }
 
     private fun initAdapters() {
@@ -140,16 +161,16 @@ class NewSurveyFragment : Fragment() {
 
     private fun showErrorDialog(it: ErrorResponse<Survey>) {
         MaterialAlertDialogBuilder(context)
-            .setPositiveButton("RETRY") { dialog, which ->
+            .setPositiveButton(getString(R.string.retry)) { dialog, which ->
                 newSurveyVM.fetchNewSurvey()
             }
-            .setNegativeButton("CANCEL") { dialog, which ->
+            .setNegativeButton(getString(R.string.cancel)) { dialog, which ->
                 requireActivity().onBackPressed()
             }
             .setOnCancelListener {
                 requireActivity().onBackPressed()
             }
-            .setTitle("Error")
+            .setTitle(getString(R.string.error))
             .setMessage(it.errorMessage)
             .create()
             .show()
@@ -175,9 +196,6 @@ class NewSurveyFragment : Fragment() {
                     viewPager.currentItem += 1
                     stepView.go(viewPager.currentItem, true)
                     stepView.done(false)
-                    if (viewPager.currentItem == questionFragmentList.size - 2) {
-                        next.text = "Done"
-                    }
                 }
             }
         }
@@ -186,9 +204,9 @@ class NewSurveyFragment : Fragment() {
     private fun showThanks() {
         stepView.done(true)
         MaterialAlertDialogBuilder(context)
-            .setTitle("Thank You!")
-            .setMessage("Congratulations! You have taken the survey successfully. You can access this survey from dashboard.")
-            .setPositiveButton("OK") { dialog, which ->
+            .setTitle(getString(R.string.thank_you))
+            .setMessage(getString(R.string.congo))
+            .setPositiveButton(getString(R.string.ok)) { dialog, which ->
                 iFinishSurvey?.onFinished()
                 dialog.dismiss()
             }
