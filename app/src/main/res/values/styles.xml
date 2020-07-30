@@ -1,20 +1,25 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="statusBarBackground">@color/colorPrimary</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
     </style>
 
     <style name="CaptionTextStyle" parent="TextAppearance.MaterialComponents.Headline4"/>
 
-    <style name="HeadlineTextStyle" parent="TextAppearance.MaterialComponents.Headline6">
+    <style name="HeadlineTextStyle" parent="TextAppearance.MaterialComponents.Headline5">
     </style>
 
-
     <style name="InfoTextStyle">
+    </style>
+
+    <style name="QuestionFragmnetStyle">
+        <item name="android:padding">16dp</item>
     </style>
 
 </resources>

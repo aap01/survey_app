@@ -30,6 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Back"
+        android:layout_marginStart="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -39,9 +40,10 @@
         android:layout_height="wrap_content"
         android:text="Next"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="16dp"/>
 
     <include layout="@layout/loading"
-        tools:visibility="gone"/>
+        tools:visibility="gone" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,11 +4,14 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    style="@style/QuestionFragmnetStyle">
 
     <include layout="@layout/question"/>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:nestedScrollingEnabled="false"
+        android:layout_marginTop="16dp"
         android:id="@+id/rvMCQ"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

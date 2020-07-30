@@ -4,13 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".presentation.new_survey.QuestionFragment"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    style="@style/QuestionFragmnetStyle">
     
     <include layout="@layout/question"/>
     
     <androidx.appcompat.widget.AppCompatSpinner
         android:id="@+id/spinner"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"/>
     
 </LinearLayout>
