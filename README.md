@@ -2,13 +2,7 @@
 
 [![Generic badge](https://img.shields.io/badge/version-1.0.0-<COLOR>.svg)](https://shields.io/)
 
-![alt txt](https://user-images.githubusercontent.com/19292809/88921804-f376e380-d290-11ea-9b80-e3bd870426dd.jpg)
-
-
-![alt txt](https://user-images.githubusercontent.com/19292809/88921794-f1148980-d290-11ea-9a20-470e1b596970.jpg)
-
-
-![alt txt](https://user-images.githubusercontent.com/19292809/88921801-f2de4d00-d290-11ea-92c8-334f1a067ba2.jpg)
+![alt txt](https://user-images.githubusercontent.com/19292809/88976107-4ecec300-d2dd-11ea-9acf-6cee3485c0f0.png)
 
 ## Sneak Peeks
 
