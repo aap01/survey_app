@@ -1,5 +1,7 @@
 package com.aap.assessment_test___v2_technologies_ltd.presentation.new_survey
 
+import android.content.Context
+import android.net.ConnectivityManager
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -53,6 +55,7 @@ class NewSurveyFragment : Fragment() {
         initAdapters()
         initUi()
         newSurveyVM.fetchNewSurvey()
+
     }
 
     private fun initUi() {
@@ -136,7 +139,20 @@ class NewSurveyFragment : Fragment() {
     }
 
     private fun showErrorDialog(it: ErrorResponse<Survey>) {
-        Toast.makeText(context, it.errorMessage, Toast.LENGTH_LONG).show()
+        MaterialAlertDialogBuilder(context)
+            .setPositiveButton("RETRY") { dialog, which ->
+                newSurveyVM.fetchNewSurvey()
+            }
+            .setNegativeButton("CANCEL") { dialog, which ->
+                requireActivity().onBackPressed()
+            }
+            .setOnCancelListener {
+                requireActivity().onBackPressed()
+            }
+            .setTitle("Error")
+            .setMessage(it.errorMessage)
+            .create()
+            .show()
     }
 
     private fun setButtonActions() {
