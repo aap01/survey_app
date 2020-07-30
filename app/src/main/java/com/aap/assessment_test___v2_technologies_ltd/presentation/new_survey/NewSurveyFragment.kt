@@ -3,6 +3,7 @@ package com.aap.assessment_test___v2_technologies_ltd.presentation.new_survey
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
@@ -56,6 +57,10 @@ class NewSurveyFragment : Fragment() {
 
     private fun initUi() {
         viewPager.adapter = fragmentAdapter
+        viewPager.setOnTouchListener { v, event ->
+            v?.performClick()
+            true
+        }
     }
 
     private fun initAdapters() {
@@ -127,6 +132,7 @@ class NewSurveyFragment : Fragment() {
         }
         questionFragmentList = tempList
         fragmentAdapter.setFragmentList(questionFragmentList)
+        stepView.setStepsNumber(questionFragmentList.size)
     }
 
     private fun showErrorDialog(it: ErrorResponse<Survey>) {
@@ -135,7 +141,12 @@ class NewSurveyFragment : Fragment() {
 
     private fun setButtonActions() {
         back.setOnClickListener {
-            requireActivity().onBackPressed()
+            if (viewPager.currentItem == 0) requireActivity().onBackPressed()
+            else {
+                viewPager.currentItem = viewPager.currentItem - 1
+                stepView.done(false)
+                stepView.go(viewPager.currentItem, true)
+            }
         }
         next.setOnClickListener {
             if (questionFragmentList[viewPager.currentItem].isValid()) {
@@ -144,7 +155,10 @@ class NewSurveyFragment : Fragment() {
                     showThanks()
                 }
                 else if (viewPager.currentItem < questionFragmentList.size - 1) {
+                    stepView.done(true)
                     viewPager.currentItem += 1
+                    stepView.go(viewPager.currentItem, true)
+                    stepView.done(false)
                     if (viewPager.currentItem == questionFragmentList.size - 2) {
                         next.text = "Done"
                     }
@@ -154,6 +168,7 @@ class NewSurveyFragment : Fragment() {
     }
 
     private fun showThanks() {
+        stepView.done(true)
         MaterialAlertDialogBuilder(context)
             .setTitle("Thank You!")
             .setMessage("Congratulations! You have taken the survey successfully. You can access this survey from dashboard.")
@@ -161,6 +176,7 @@ class NewSurveyFragment : Fragment() {
                 iFinishSurvey?.onFinished()
                 dialog.dismiss()
             }
+            .setOnCancelListener { requireActivity().onBackPressed() }
             .create()
             .show()
     }

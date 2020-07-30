@@ -27,6 +27,7 @@ class TextFragment: QuestionFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         questionStatement.text = getQuestionTitleWithConstraint()
+        userInput.setText(question.answerFromKeyboard)
         userInput.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) { }
 

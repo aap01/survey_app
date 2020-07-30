@@ -27,6 +27,7 @@ class NumberFragment: QuestionFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         questionStatement.text = getQuestionTitleWithConstraint()
+        number.setText(question.answerFromKeyboard)
         number.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) { }
 

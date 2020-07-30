@@ -21,7 +21,8 @@ class DropdownFragment : QuestionFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         questionStatement.text = getQuestionTitleWithConstraint()
-        spinner.adapter = ArrayAdapter(context!!, android.R.layout.simple_spinner_item, question.options.map { it.option })
+        val adapter = ArrayAdapter(context!!, android.R.layout.simple_spinner_item, question.options.map { it.option })
+        spinner.adapter = adapter
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) { }
 
@@ -34,6 +35,14 @@ class DropdownFragment : QuestionFragment() {
                 question.options.map { it.isSelected = false }
                 question.options[position].isSelected = true
             }
+        }
+        try {
+            question.options.first { it.isSelected }?.let {
+                val index = adapter.getPosition(it.option)
+                spinner.setSelection(index)
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
     }
 }
