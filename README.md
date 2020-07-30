@@ -10,7 +10,7 @@
 
 ![alt txt](https://user-images.githubusercontent.com/19292809/88921801-f2de4d00-d290-11ea-92c8-334f1a067ba2.jpg)
 
-## Sneak Peaks
+## Sneak Peeks
 
 Dependency injection with Koin
 
