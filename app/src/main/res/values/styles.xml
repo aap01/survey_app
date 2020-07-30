@@ -8,6 +8,13 @@
         <item name="statusBarBackground">@color/colorPrimary</item>
     </style>
 
-    <style name="TitleText" parent="TextAppearance.MaterialComponents.Headline5"/>
+    <style name="CaptionTextStyle" parent="TextAppearance.MaterialComponents.Headline4"/>
+
+    <style name="HeadlineTextStyle" parent="TextAppearance.MaterialComponents.Headline6">
+    </style>
+
+
+    <style name="InfoTextStyle">
+    </style>
 
 </resources>

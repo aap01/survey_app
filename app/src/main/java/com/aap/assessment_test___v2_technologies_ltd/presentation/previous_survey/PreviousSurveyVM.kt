@@ -3,6 +3,7 @@ package com.aap.assessment_test___v2_technologies_ltd.presentation.previous_surv
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.aap.assessment_test___v2_technologies_ltd.data.model.entity.PreviousSurvey
 import com.aap.assessment_test___v2_technologies_ltd.data.model.entity.Survey
 import com.aap.assessment_test___v2_technologies_ltd.data.util.ErrorResponse
 import com.aap.assessment_test___v2_technologies_ltd.data.util.Loading
@@ -18,8 +19,8 @@ class PreviousSurveyVM(
     override val coroutineContext: CoroutineContext
 ) : ViewModel(), CoroutineScope {
 
-    private val _previousSurveyData = MutableLiveData<ModelResponse<List<Survey>>> ()
-    val prevSurveyData: LiveData<ModelResponse<List<Survey>>> = _previousSurveyData
+    private val _previousSurveyData = MutableLiveData<ModelResponse<List<PreviousSurvey>>> ()
+    val prevSurveyData: LiveData<ModelResponse<List<PreviousSurvey>>> = _previousSurveyData
 
     fun get() {
         launch {
@@ -28,6 +29,7 @@ class PreviousSurveyVM(
                 _previousSurveyData.postValue(SuccessResponse(body = getPreviousSurveyUC.get()))
             } catch (e: Exception) {
                 _previousSurveyData.postValue(ErrorResponse(errorMessage = e.message))
+                e.printStackTrace()
             }
         }
     }

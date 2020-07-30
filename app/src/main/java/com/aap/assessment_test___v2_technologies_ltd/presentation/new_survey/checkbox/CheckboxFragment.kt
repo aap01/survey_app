@@ -16,7 +16,7 @@ class CheckboxFragment: QuestionFragment() {
         var isValid = true
         if (question.isRequired) {
             isValid = question.options.any { it.isSelected }
-            Toast.makeText(context, "Required Question", Toast.LENGTH_SHORT).show()
+            if (!isValid) Toast.makeText(context, "Required Question", Toast.LENGTH_SHORT).show()
         }
         return isValid
     }

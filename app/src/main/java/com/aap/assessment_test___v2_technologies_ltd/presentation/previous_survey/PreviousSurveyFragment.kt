@@ -5,15 +5,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.aap.assessment_test___v2_technologies_ltd.R
+import com.aap.assessment_test___v2_technologies_ltd.data.model.entity.PreviousSurvey
 import com.aap.assessment_test___v2_technologies_ltd.data.model.entity.Survey
 import com.aap.assessment_test___v2_technologies_ltd.data.util.ErrorResponse
 import com.aap.assessment_test___v2_technologies_ltd.data.util.Loading
 import com.aap.assessment_test___v2_technologies_ltd.data.util.SuccessResponse
 import com.aap.assessment_test___v2_technologies_ltd.presentation.INewSurveyClick
-import com.aap.assessment_test___v2_technologies_ltd.presentation.extentions.gone
-import com.aap.assessment_test___v2_technologies_ltd.presentation.extentions.visible
+import com.aap.assessment_test___v2_technologies_ltd.presentation.extensions.gone
+import com.aap.assessment_test___v2_technologies_ltd.presentation.extensions.visible
 import kotlinx.android.synthetic.main.fragment_previous_survey.*
 import kotlinx.android.synthetic.main.loading.*
 import org.koin.android.ext.android.inject
@@ -22,6 +24,7 @@ class PreviousSurveyFragment : Fragment() {
 
     var iNewSurveyClick: INewSurveyClick? = null
     private val previousSurveyVM: PreviousSurveyVM by inject()
+    private val previousSurveyAdapter: PreviousSurveyAdapter by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,6 +39,7 @@ class PreviousSurveyFragment : Fragment() {
         initObservers()
         setButtonActions()
         previousSurveyVM.get()
+        rvPreviousSurvey.adapter = previousSurveyAdapter
     }
 
     private fun setButtonActions() {
@@ -60,12 +64,12 @@ class PreviousSurveyFragment : Fragment() {
         })
     }
 
-    private fun showErrorDialog(it: ErrorResponse<List<Survey>>) {
-
+    private fun showErrorDialog(it: ErrorResponse<List<PreviousSurvey>>) {
+        Toast.makeText(context, it.errorMessage, Toast.LENGTH_LONG).show()
     }
 
-    private fun showSuccess(it: SuccessResponse<List<Survey>>) {
-
+    private fun showSuccess(it: SuccessResponse<List<PreviousSurvey>>) {
+        previousSurveyAdapter.setItemList(it.body)
     }
 
 }

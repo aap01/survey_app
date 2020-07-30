@@ -15,6 +15,6 @@ data class SurveyD (
 ) {
     companion object {
         const val SURVEY_TABLE = "survey"
-        const val SURVEY_ID_COL = "id"
+        const val SURVEY_ID_COL = "s_id"
     }
 }

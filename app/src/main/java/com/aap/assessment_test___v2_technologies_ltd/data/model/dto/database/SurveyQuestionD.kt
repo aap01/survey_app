@@ -9,6 +9,6 @@ data class SurveyQuestionD (
     var surveyD: SurveyD,
     @Relation(
         parentColumn = SurveyD.SURVEY_ID_COL,
-        entityColumn = QuestionD.QUESTION_ID_COL
-    ) val questionsD: List<QuestionD>
+        entityColumn = "survey_id"
+    ) var questionsD: List<QuestionD>
 )

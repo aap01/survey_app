@@ -4,7 +4,7 @@ import DB_NAME
 import androidx.room.Room
 import com.aap.assessment_test___v2_technologies_ltd.data.api.BASE_URL
 import com.aap.assessment_test___v2_technologies_ltd.data.mapper.SurveyNetToSurvey
-import com.aap.assessment_test___v2_technologies_ltd.data.mapper.SurveyQuestionDToSurvey
+import com.aap.assessment_test___v2_technologies_ltd.data.mapper.SurveyQuestionDToPreviousSurvey
 import com.aap.assessment_test___v2_technologies_ltd.data.mapper.SurveyToSurveyQuestionD
 import com.aap.assessment_test___v2_technologies_ltd.data.repository.SurveyRepositoryImpl
 import com.aap.assessment_test___v2_technologies_ltd.data.usecase.FetchSurveyUCImpl
@@ -19,6 +19,7 @@ import com.aap.assessment_test___v2_technologies_ltd.domain.usecase.StoreSurveyU
 import com.aap.assessment_test___v2_technologies_ltd.presentation.new_survey.checkbox.CheckboxAdapter
 import com.aap.assessment_test___v2_technologies_ltd.presentation.new_survey.mcq.MCQAdapter
 import com.aap.assessment_test___v2_technologies_ltd.presentation.new_survey.NewSurveyVM
+import com.aap.assessment_test___v2_technologies_ltd.presentation.previous_survey.PreviousSurveyAdapter
 import com.aap.assessment_test___v2_technologies_ltd.presentation.previous_survey.PreviousSurveyVM
 import com.google.gson.GsonBuilder
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
@@ -49,7 +50,7 @@ val netModule = module {
 val mapperModule = module {
     factory { SurveyNetToSurvey() }
     factory { SurveyToSurveyQuestionD() }
-    factory { SurveyQuestionDToSurvey() }
+    factory { SurveyQuestionDToPreviousSurvey() }
 }
 
 val repoModule = module {
@@ -59,7 +60,7 @@ val repoModule = module {
             surveyDao = get(),
             surveyNetToSurvey = get(),
             surveyToSurveyQuestionD = get(),
-            surveyQuestionDToSurvey = get()
+            surveyQuestionDToPreviousSurvey = get()
         ) as SurveyRepository
     }
 }
@@ -98,5 +99,8 @@ val adapterModule = module {
     }
     factory {
         CheckboxAdapter()
+    }
+    factory {
+        PreviousSurveyAdapter()
     }
 }

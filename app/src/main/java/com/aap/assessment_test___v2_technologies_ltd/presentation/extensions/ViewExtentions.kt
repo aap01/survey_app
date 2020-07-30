@@ -1,4 +1,4 @@
-package com.aap.assessment_test___v2_technologies_ltd.presentation.extentions
+package com.aap.assessment_test___v2_technologies_ltd.presentation.extensions
 
 import android.view.View
 

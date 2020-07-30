@@ -21,13 +21,21 @@ interface SurveyDao {
         surveyQuestionD.questionsD.map {
             it.surveyId = surveyId
         }
-        insert(surveyQuestionD.questionsD)
+        insert(surveyQuestionD.questionsD).map {
+            println("Inserted item $it")
+        }
     }
 
     @Insert
-    suspend fun insert(questionDS: List<QuestionD>): List<Long>
+    suspend fun insert(questionsD: List<QuestionD>): List<Long>
 
     @Transaction
     @Query("SELECT * FROM ${SurveyD.SURVEY_TABLE}")
     suspend fun getPreviousSurveys(): List<SurveyQuestionD>
+
+    @Query("SELECT * FROM ${QuestionD.QUESTION_TABLE}")
+    suspend fun getAllQs(): List<QuestionD>
+
+    @Query("SELECT * FROM ${SurveyD.SURVEY_TABLE}")
+    suspend fun getAllSs(): List<SurveyD>
 }

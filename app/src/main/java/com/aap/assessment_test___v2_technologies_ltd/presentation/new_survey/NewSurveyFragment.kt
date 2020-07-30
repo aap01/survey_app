@@ -17,8 +17,8 @@ import com.aap.assessment_test___v2_technologies_ltd.data.util.SuccessResponse
 import com.aap.assessment_test___v2_technologies_ltd.presentation.IFinishSurvey
 import com.aap.assessment_test___v2_technologies_ltd.presentation.new_survey.checkbox.CheckboxFragment
 import com.aap.assessment_test___v2_technologies_ltd.presentation.new_survey.dropdown.DropdownFragment
-import com.aap.assessment_test___v2_technologies_ltd.presentation.extentions.gone
-import com.aap.assessment_test___v2_technologies_ltd.presentation.extentions.visible
+import com.aap.assessment_test___v2_technologies_ltd.presentation.extensions.gone
+import com.aap.assessment_test___v2_technologies_ltd.presentation.extensions.visible
 import com.aap.assessment_test___v2_technologies_ltd.presentation.new_survey.mcq.MCQFragment
 import com.aap.assessment_test___v2_technologies_ltd.presentation.new_survey.number.NumberFragment
 import com.aap.assessment_test___v2_technologies_ltd.presentation.new_survey.text.TextFragment

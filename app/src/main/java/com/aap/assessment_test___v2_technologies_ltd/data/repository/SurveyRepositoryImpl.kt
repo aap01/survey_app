@@ -1,8 +1,9 @@
 package com.aap.assessment_test___v2_technologies_ltd.data.repository
 
 import com.aap.assessment_test___v2_technologies_ltd.data.mapper.SurveyNetToSurvey
-import com.aap.assessment_test___v2_technologies_ltd.data.mapper.SurveyQuestionDToSurvey
+import com.aap.assessment_test___v2_technologies_ltd.data.mapper.SurveyQuestionDToPreviousSurvey
 import com.aap.assessment_test___v2_technologies_ltd.data.mapper.SurveyToSurveyQuestionD
+import com.aap.assessment_test___v2_technologies_ltd.data.model.entity.PreviousSurvey
 import com.aap.assessment_test___v2_technologies_ltd.data.model.entity.Survey
 import com.aap.assessment_test___v2_technologies_ltd.domain.api.SurveyApiService
 import com.aap.assessment_test___v2_technologies_ltd.domain.database.SurveyDao
@@ -15,7 +16,7 @@ class SurveyRepositoryImpl(
     private val surveyDao: SurveyDao,
     private val surveyNetToSurvey: SurveyNetToSurvey,
     private val surveyToSurveyQuestionD: SurveyToSurveyQuestionD,
-    private val surveyQuestionDToSurvey: SurveyQuestionDToSurvey
+    private val surveyQuestionDToPreviousSurvey: SurveyQuestionDToPreviousSurvey
 ) : SurveyRepository {
     override suspend fun fetchNewSurvey(): Survey {
         return withContext(Dispatchers.IO) {
@@ -29,9 +30,9 @@ class SurveyRepositoryImpl(
         }
     }
 
-    override suspend fun getPreviousSurveys(): List<Survey> {
+    override suspend fun getPreviousSurveys(): List<PreviousSurvey> {
         return withContext(Dispatchers.IO) {
-            surveyQuestionDToSurvey.map(surveyDao.getPreviousSurveys())
+            surveyQuestionDToPreviousSurvey.map(surveyDao.getPreviousSurveys())
         }
     }
 }
