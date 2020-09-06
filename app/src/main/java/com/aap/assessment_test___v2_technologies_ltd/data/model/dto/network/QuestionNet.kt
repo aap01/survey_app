@@ -18,6 +18,6 @@ data class QuestionNet(
         const val TEXT = "text"
         const val DROPDOWN = "dropdown"
         const val NUMBER = "number"
-        const val CHECKBOX = "Checkbox"
+        const val CHECKBOX = "checkbox"
     }
 }

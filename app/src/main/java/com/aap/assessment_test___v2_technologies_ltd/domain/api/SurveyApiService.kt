@@ -5,6 +5,6 @@ import kotlinx.coroutines.Deferred
 import retrofit2.http.GET
 
 interface SurveyApiService {
-    @GET("getSurvey")
+    @GET("/survey")
     fun fetchSurvey(): Deferred<List<QuestionNet>>
 }
