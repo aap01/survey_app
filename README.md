@@ -1,4 +1,4 @@
-# Assessment-Test---V2-Technologies-LTD
+# Survey App
 
 [![Generic badge](https://img.shields.io/badge/version-1.0.0-<COLOR>.svg)](https://shields.io/)
 
